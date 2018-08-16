@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Task Requester 1-Click Demo</title>
+    <script src="../../dist/staking.js"></script>
+    <!--<link rel="stylesheet" href="../../dist/taskRequesterDemo.css"></link>-->
+    <link rel="stylesheet" href="../../dist/staking.css"></link>
+</head>
+<body>
+
+    <style>
+        .omniContainer div {margin: 10px}
+
+        [data-stake-modifiers*="hideMe"] {display: none;} /* must be present */
+        [data-stake-modifiers*="disabled"] {background-color: red;} /* set any effect you want for disabled interface */
+    </style>
+
+    <div id="stakeContainer">
+        <div data-stake-id="loading" data-stake-modifiers="hideMe">
+            Loading...
+        </div>
+
+        Your current stake
+        <div data-stake-id="currentStake">
+        </div>
+
+        Stake is currently locked:
+        <input type="checkbox" name="" data-stake-id="currentlyLocked" disabled="disabled">
+
+        <div data-stake-id="lockableContainer">
+            Increase stack
+            <input type="text" name="" data-stake-id="stakeValueIncrease" /> [Wei]
+            <input type="button" name="" data-stake-id="confirmIncreaseStake" value="Confirm" />
+            <span data-stake-id="stakeIncreaseInvalidInput" data-stake-modifiers="hideMe">Invalid value</span>
+
+            Decrease stack
+            <input type="text" name="" data-stake-id="stakeValueDecrease" /> [Wei]
+            <input type="button" name="" data-stake-id="confirmDecreaseStake" value="Confirm" />
+            <span data-stake-id="stakeDecreaseInvalidInput" data-stake-modifiers="hideMe">Invalid value</span>
+            <span data-stake-id="stakeDecreaseInsufficientStake" data-stake-modifiers="hideMe">Enter value equal or lower than your stake</span>
+        </div>
+
+        Your stake history
+        <div data-stake-id="stakeHistoryContainer">
+        </div>
+
+        Your sanction history
+        <div data-stake-id="sanctionHistoryContainer">
+        </div>
+
+    </div>
+
+    <script>
+        (() => {
+            const contractAddress = '0xf34e493ec048cf1013a8d5e14906b34b04c59bf3'
+            const userAddress = '0x9c5edb287e75e28fd7bcbfe9d527bf31c9119139'
+            const rootElement = document.querySelector('#stakeContainer')
+
+            const formatters = {
+                // (typeName: string, time: Date, value: number): string
+                historyRecord: (typeName, time, value) => {
+                    const padToTwo = (value) => {
+                        if (("" + value).length < 2) {
+                            return "0" + value
+                        }
+
+                        return "" + value
+                    }
+
+
+                    const nowFormated = `${time.getFullYear()}-${padToTwo(time.getMonth() + 1)}-${padToTwo(time.getDate())} ${padToTwo(time.getHours())}:${padToTwo(time.getMinutes())}`
+                    const html = `<div><span>${typeName}</span> <span>${value}</span> <span>${nowFormated}</span> <div/>`
+
+                    return html
+                }
+            }
+
+            window.addEventListener('load', window.fragmentsStacking.load(contractAddress, userAddress, rootElement, formatters))
+
+
+            /* use this to debug interface for locked stakes
+            window.addEventListener('load', window.fragmentsStacking.load(contractAddress, userAddress, rootElement, formatters).then(() => {
+                const event = new CustomEvent('stakeLockStart')
+                rootElement.dispatchEvent(event)
+            }))
+            */
+        })()
+    </script>
+
+</body>
+</html>
