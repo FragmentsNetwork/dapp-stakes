@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "license": "All rights reserved",
   "scripts": {
-    "build": "nodejs makefile build",
+    "build": "node makefile build",
     "clean": "rm -r dist",
     "guiServer": "http-server ./ -p 8080 -c=-1",
     "prepare": "yarn run build",
     "test": "mocha -r ts-node/register --timeout 10000 tests/tests.ts",
-    "watch": "nodejs makefile watch"
+    "watch": "node makefile watch"
   },
   "main": "dist/staking.js",
   "dependencies": {
