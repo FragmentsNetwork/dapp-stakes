@@ -10,6 +10,7 @@
     "test": "mocha -r ts-node/register --timeout 10000 tests/tests.ts",
     "watch": "nodejs makefile watch"
   },
+  "main": "dist/staking.js",
   "dependencies": {
     "bignumber": "^1.1.0",
     "http-server": "^0.11.1",
