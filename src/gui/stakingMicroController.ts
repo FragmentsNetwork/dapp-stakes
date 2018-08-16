@@ -74,6 +74,14 @@ export class StakingMicroController {
         return new Date(await this.getBlockTimestamp(blockNumber))
     }
 
+    private async weiToDesiredUnit(weiValue) {
+        return (await getWeb3()).utils.fromWei(weiValue.toString(), 'ether')
+    }
+
+    private async desiredUnitToWei(desiredUnitValue) {
+        return (await getWeb3()).utils.toWei(desiredUnitValue.toString(), 'ether')
+    }
+
     /////////////////// Actions ////////////////////////////////////////////////
     public async increaseStake(value: number) {
         const func = this.stakingContract.rawWeb3Contract.methods.putStake().send({value: value, from: this.userAddress})

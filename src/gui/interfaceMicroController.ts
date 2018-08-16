@@ -1,5 +1,8 @@
 import {StakingEvents, IFormatters, cssSelectors, cssClasses, htmlClassAttribute, htmlModifierAttribute} from './customTypes'
-import * as BigNumber from 'bignumber'
+import {BigNumber} from 'bignumber.js'
+import {getWeb3} from './web3Loader'
+
+BigNumber.config({ERRORS: false})
 
 export class InterfaceMicroController {
 
@@ -56,43 +59,49 @@ export class InterfaceMicroController {
         historyContainer.innerHTML += this.formatters.historyRecord(typeName, time, value)
     }
 
-    private addStakeIncreaseRecord = (time: Date, valueChange: number, resultTotal: number) => {
+    private addStakeIncreaseRecord = async (time: Date, valueChange: number, resultTotal: number) => {
         const historyContainer = this.getElement(cssSelectors.stakeHistoryContainer)
-        this.addStakeHistoryRecord(historyContainer, 'Increase', time, valueChange)
+        const resultValue = await this.stakingMicroController.weiToDesiredUnit(valueChange)
+        this.addStakeHistoryRecord(historyContainer, 'Increase', time, resultValue)
     }
 
-    private addStakeDecreaseRecord = (time: Date, valueChange: number, resultTotal: number) => {
+    private addStakeDecreaseRecord = async (time: Date, valueChange: number, resultTotal: number) => {
         const historyContainer = this.getElement(cssSelectors.stakeHistoryContainer)
-        this.addStakeHistoryRecord(historyContainer, 'Decrease', time, valueChange)
+        const resultValue = await this.stakingMicroController.weiToDesiredUnit(valueChange)
+        this.addStakeHistoryRecord(historyContainer, 'Decrease', time, resultValue)
     }
 
     /////////////////// Listeners //////////////////////////////////////////////
 
     private increaseStakeListener = async (e) => {
         const element = <HTMLInputElement> this.getElement(cssSelectors.stakeValueIncrease)
-        const value = parseInt(element.value)
+        const valueEth = parseInt(element.value)
 
-        if (isNaN(value) || value < 1) {
+        if (isNaN(valueEth) || valueEth <= 0) {
             this.invalidInput(cssSelectors.increaseStakeInvalidInput)
             return
         }
 
+        const valueWei = await this.stakingMicroController.desiredUnitToWei(valueEth)
+
         this.validInput(cssSelectors.increaseStakeInvalidInput)
 
-        await this.stakingMicroController.increaseStake(value)
+        await this.stakingMicroController.increaseStake(valueWei)
     }
 
     private decreaseStakeListener = async (e) => {
         const element = <HTMLInputElement> this.getElement(cssSelectors.stakeValueDecrease)
-        const value = parseInt(element.value)
+        const valueEth = new BigNumber(element.value)
 
-        if (value < 1) {
+        if (valueEth.isNaN() || valueEth.lt(new BigNumber(0))) {
             this.invalidInput(cssSelectors.decreaseStakeInvalidInput)
             return
         }
 
+        const valueWei = await this.stakingMicroController.desiredUnitToWei(valueEth.toString())
+
         const balance = await this.stakingMicroController.fetchBalance()
-        if (new BigNumber(value) > balance) {
+        if (new BigNumber(valueWei.toString()).gt(new BigNumber(balance.toString()))) {
             this.invalidInput(cssSelectors.stakeDecreaseInsufficientStake)
             return
         }
@@ -100,7 +109,7 @@ export class InterfaceMicroController {
         this.validInput(cssSelectors.decreaseStakeInvalidInput)
         this.validInput(cssSelectors.stakeDecreaseInsufficientStake)
 
-        await this.stakingMicroController.decreaseStake(value)
+        await this.stakingMicroController.decreaseStake(valueWei)
     }
 
     private stakeIncreased = (event) => {
@@ -123,7 +132,7 @@ export class InterfaceMicroController {
 
     private refreshBalance = async (event) => {
         const balance = event.detail
-        this.getElement(cssSelectors.stakeBalance).innerHTML = balance
+        this.getElement(cssSelectors.stakeBalance).innerHTML = await this.stakingMicroController.weiToDesiredUnit(balance)
     }
 
     private stakeLockStart = async () => {

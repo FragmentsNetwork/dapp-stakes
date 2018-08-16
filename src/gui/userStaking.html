@@ -23,19 +23,19 @@
 
         Your current stake
         <div data-stake-id="currentStake">
-        </div>
+        </div> ETH
 
         Stake is currently locked:
         <input type="checkbox" name="" data-stake-id="currentlyLocked" disabled="disabled">
 
         <div data-stake-id="lockableContainer">
             Increase stack
-            <input type="text" name="" data-stake-id="stakeValueIncrease" /> [Wei]
+            <input type="text" name="" data-stake-id="stakeValueIncrease" /> [ETH]
             <input type="button" name="" data-stake-id="confirmIncreaseStake" value="Confirm" />
             <span data-stake-id="stakeIncreaseInvalidInput" data-stake-modifiers="hideMe">Invalid value</span>
 
             Decrease stack
-            <input type="text" name="" data-stake-id="stakeValueDecrease" /> [Wei]
+            <input type="text" name="" data-stake-id="stakeValueDecrease" /> [ETH]
             <input type="button" name="" data-stake-id="confirmDecreaseStake" value="Confirm" />
             <span data-stake-id="stakeDecreaseInvalidInput" data-stake-modifiers="hideMe">Invalid value</span>
             <span data-stake-id="stakeDecreaseInsufficientStake" data-stake-modifiers="hideMe">Enter value equal or lower than your stake</span>
@@ -70,7 +70,7 @@
 
 
                     const nowFormated = `${time.getFullYear()}-${padToTwo(time.getMonth() + 1)}-${padToTwo(time.getDate())} ${padToTwo(time.getHours())}:${padToTwo(time.getMinutes())}`
-                    const html = `<div><span>${typeName}</span> <span>${value}</span> <span>${nowFormated}</span> <div/>`
+                    const html = `<div><span>${typeName}</span> <span>${value}</span> ETH <span>${nowFormated}</span> <div/>`
 
                     return html
                 }
