@@ -13,7 +13,7 @@ const solIndeces = [
 
 const tsxIndeces = [
     //'rootDir relativePathToIndex.ts outputDir'
-    'src/gui staking.ts dist'
+    'src/gui stakingLoader.ts dist'
 ];
 
 const cssTypeIndeces = [
