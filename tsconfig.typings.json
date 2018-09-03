@@ -6,7 +6,11 @@
         "jsxFactory": "h",
         "lib": ["es2017", "dom"],
 
-        "outDir": "dist"
+        "outDir": "dist",
+
+        "declaration": true
     },
-    "files": []
+    "files": [
+        "src/gui/stakingLoader.ts"
+    ]
 }
