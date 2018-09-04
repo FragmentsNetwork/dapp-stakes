@@ -8,7 +8,7 @@
 
         "declaration": true
     },
-    "files": [
-        "src/gui/stakingLoader.ts"
+    "include": [
+        "src/gui/**/*.ts"
     ]
 }
