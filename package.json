@@ -1,12 +1,12 @@
 {
   "name": "fragments-network-dapp-stakes",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "license": "All rights reserved",
   "scripts": {
     "build": "node makefile build && tsc -p tsconfig.typings.json",
     "clean": "rm -r dist",
     "guiServer": "http-server ./ -p 8080 -c=-1",
-    "prepare": "yarn run build",
+    "postinstall": "yarn run build",
     "test": "mocha -r ts-node/register --timeout 10000 tests/tests.ts",
     "watch": "node makefile watch"
   },
