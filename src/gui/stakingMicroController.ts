@@ -1,5 +1,5 @@
 import {Address, StakingEvents, IFormatters} from './customTypes'
-import {StakingContract} from '../../dist/tsWrappings/StakingContract'
+import {StakingContract} from '../../tsWrappings/StakingContract'
 import {getWeb3, compatibilityWrapper} from './web3Loader'
 import {InterfaceMicroController} from './interfaceMicroController'
 import Web3 from 'web3'

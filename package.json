@@ -1,6 +1,6 @@
 {
   "name": "fragments-network-dapp-stakes",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "license": "All rights reserved",
   "scripts": {
     "build": "node makefile build && tsc",

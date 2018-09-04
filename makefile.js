@@ -46,7 +46,7 @@ commands = {
     buildGui: () => tsxIndeces.map((item) => tsxBuild(...item.split(' ').concat([tsxParameters]))),
     buildCssType: () => cssTypeBuild(cssTypeIndeces),
     buildTsContractWrapping: () => {
-        const outputDir = 'dist/tsWrappings/'
+        const outputDir = 'tsWrappings/'
         const abisPath = 'dist/StakingContract_abi.json'
         const fileContent = fs.readFileSync(abisPath).toString()
         const abis = JSON.parse(fileContent)
