@@ -92,10 +92,11 @@ commands = {
             fs.writeFileSync(outputPath, patchedWrapper);
         })
 
-        const runtimeDependency = fs.readFileSync(__dirname + '/node_modules/typechain/runtime/typechain-runtime.ts').toString()
+
+        const typechainRuntimePath = require.resolve('typechain/runtime/typechain-runtime.ts')
+        const runtimeDependency = fs.readFileSync(typechainRuntimePath).toString()
 
         const patchedRuntimeDependency = applyRuntimePatches(runtimeDependency)
-        console.log(patchedRuntimeDependency)
         fs.writeFileSync(outputDir + '/typechain-runtime.ts', patchedRuntimeDependency, prettierConfig)
 
         return true

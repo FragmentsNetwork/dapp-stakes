@@ -1,6 +1,6 @@
 {
   "name": "fragments-network-dapp-stakes",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "license": "All rights reserved",
   "scripts": {
     "build": "node makefile build && tsc -p tsconfig.typings.json",
