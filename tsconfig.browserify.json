@@ -4,11 +4,7 @@
         "moduleResolution": "node",
         "lib": ["es2017", "dom"],
 
-        "outDir": "dist",
-
-        "declaration": true
+        "outDir": "dist"
     },
-    "files": [
-        "src/gui/stakingLoader.ts"
-    ]
+    "files": []
 }

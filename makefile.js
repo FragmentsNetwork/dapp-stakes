@@ -21,7 +21,7 @@ const cssTypeIndeces = [
 ];
 
 const tsxParameters = {
-    tsconfig: __dirname + "/tsconfig.json"
+    tsconfig: __dirname + "/tsconfig.browserify.json"
 };
 
 const ensureFolder = (folder) => {

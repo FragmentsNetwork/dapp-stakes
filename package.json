@@ -3,7 +3,7 @@
   "version": "0.1.6",
   "license": "All rights reserved",
   "scripts": {
-    "build": "node makefile build && tsc -p tsconfig.typings.json",
+    "build": "node makefile build && tsc",
     "clean": "rm -r dist",
     "guiServer": "http-server ./ -p 8080 -c=-1",
     "postinstall": "yarn run build",
@@ -17,6 +17,7 @@
     "http-server": "^0.11.1",
     "soliditySapper": "https://github.com/ondratra/soliditySapper.git#master",
     "typechain": "0.2.4",
+    "typescript": "^3.0.3",
     "web3": "^1.0.0-beta.35",
     "web3-event-compatibility": "https://github.com/upperwal/web3-event-compatibility",
     "zeppelin-solidity": "^1.12.0"
