@@ -2,7 +2,7 @@ import {Address, StakingEvents, IFormatters} from './customTypes'
 import {StakingContract} from '../../tsWrappings/StakingContract'
 import {getWeb3, compatibilityWrapper} from './web3Loader'
 import {InterfaceMicroController} from './interfaceMicroController'
-import Web3 from 'web3'
+//import Web3 from 'web3'
 import * as BigNumber from 'bignumber'
 
 
@@ -14,7 +14,7 @@ export class StakingMicroController {
     private stakingContract: StakingContract
     private stakingContractEventWatchable: StakingContract // this is needed due to problems with web3 + websockets + metamask https://github.com/MetaMask/metamask-extension/issues/3642
     private loadingIndex: number = 0
-    private web3: Web3
+    private web3//: Web3
     private interfaceMicroController: InterfaceMicroController
 
     public constructor() {

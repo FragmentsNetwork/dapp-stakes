@@ -1,5 +1,6 @@
 //import Web3 from 'web3'
-const Web3 = require('web3')
+//const Web3 = require('web3')
+const Web3 = require('./web3.min.js')
 const Web3EventCompatibility = require('web3-event-compatibility')
 
 declare global {

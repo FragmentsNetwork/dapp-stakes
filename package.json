@@ -1,6 +1,6 @@
 {
   "name": "fragments-network-dapp-stakes",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "license": "All rights reserved",
   "scripts": {
     "build": "node makefile build && tsc",
@@ -12,14 +12,16 @@
   },
   "main": "dist/src/gui/staking.js",
   "types": "dist/src/gui/staking.d.ts",
-  "dependencies": {
-    "bignumber": "^1.1.0",
+  "devDependencies": {
     "http-server": "^0.11.1",
+    "indexof": "^0.0.1",
     "soliditySapper": "https://github.com/ondratra/soliditySapper.git#master",
     "typechain": "0.2.4",
     "typescript": "^3.0.3",
-    "web3": "^1.0.0-beta.35",
-    "web3-event-compatibility": "https://github.com/upperwal/web3-event-compatibility",
     "zeppelin-solidity": "^1.12.0"
+  },
+  "dependencies": {
+    "bignumber": "^1.1.0",
+    "web3-event-compatibility": "https://github.com/upperwal/web3-event-compatibility"
   }
 }
