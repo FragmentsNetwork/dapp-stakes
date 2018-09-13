@@ -2,7 +2,7 @@
   <img src="https://i.imgur.com/7PUcgAN.png" alt="" width="560">
 </a>
 
-# Fragment.Network Dapp Agreements
+# Fragment.Network Staking
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
