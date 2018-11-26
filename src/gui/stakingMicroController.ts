@@ -59,11 +59,13 @@ export class StakingMicroController {
             this.loadingStart()
         }
 
-        await promise.catch(error => console.error(error))
+        const result = await promise.catch(error => console.error(error))
 
         if (--this.loadingIndex == 0) {
             this.loadingEnd()
         }
+
+        return result
     }
 
     private async getBlockTimestamp(blockNumber: number): Promise<number> {
@@ -95,7 +97,7 @@ export class StakingMicroController {
 
     public async fetchIsStakeLocked() {
         const func = this.stakingContract.stakeLocks(this.userAddress)
-        await this.useLoading(func)
+        return await this.useLoading(func)
     }
 
     public async fetchBalance() {

@@ -1,6 +1,6 @@
 {
   "name": "fragments-network-dapp-stakes",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "license": "All rights reserved",
   "scripts": {
     "build": "node makefile build && tsc",
@@ -15,10 +15,11 @@
   "devDependencies": {
     "http-server": "^0.11.1",
     "indexof": "^0.0.1",
+    "openzeppelin-solidity": "^2.0.0",
+    "solc": "^0.4.21",
     "soliditySapper": "https://github.com/ondratra/soliditySapper.git#master",
     "typechain": "0.2.4",
-    "typescript": "^3.0.3",
-    "zeppelin-solidity": "^1.12.0"
+    "typescript": "^3.0.3"
   },
   "dependencies": {
     "bignumber": "^1.1.0",
